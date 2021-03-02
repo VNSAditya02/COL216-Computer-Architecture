@@ -1,11 +1,10 @@
 	.data
 prompt: .asciiz "Enter the length of the string: "
-postfix: .asciiz "Enter the postfix experiment: "
+postfix: .asciiz "Enter the postfix expression: "
 endline: .asciiz "\n"
 userAns: .space 1000
 wrong_char: .asciiz "You entered a character that is not permitted (or) The length of the string entered is wrong\n"
 invalid_exp: .asciiz "The postfix expression is invalid (or) The length of the string entered is wrong\n"
-over_flow: .asciiz "Overflow occured\n"
 result: .asciiz "Result of the expression is: "
 
 	.text
@@ -107,8 +106,6 @@ product:
 	lw $t3, ($sp)
 	lw $t4, 4($sp)
 	mult $t3, $t4
-	mfhi $t5
-	bne $t5, 0, overflow
 	mflo $t5
 	addi $sp, $sp, 8
 	addi $sp, $sp, -4
@@ -168,11 +165,6 @@ invalid:
 	la $a0, invalid_exp
 	syscall
 	j end_code
-	
-overflow:
-	li $v0, 4
-	la $a0, over_flow
-	syscall
 	
 end_code:
 

@@ -1,0 +1,10 @@
+addi $t0, $zero, 1000
+addi $t1, $zero, 1024
+addi $t2, $zero, 10
+addi $t3, $zero, 20
+sw $t3, 0($t0)
+lw $t6, 0($t0)
+beq $t1, $t2, 9
+add $t7, $t6, $t6
+add $t8, $t6, $t6
+add $t9, $t6, $t6

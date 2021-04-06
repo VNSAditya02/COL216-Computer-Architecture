@@ -1,0 +1,39 @@
+cycle 1: addi $t0, $zero, 1000
+$t0 = 1000, Memory not modified
+
+cycle 2: addi $t1, $zero, 1024
+$t1 = 1024, Memory not modified
+
+cycle 3: addi $t2, $zero, 10
+$t2 = 10, Memory not modified
+
+cycle 4: addi $t3, $zero, 20
+$t3 = 20, Memory not modified
+
+cycle 5: DRAM request issued
+
+cycle 6-17: No register modified, Updated memory address 1000-1003 = 20, Activated row 0 and accessed address 1000
+
+cycle 18: DRAM request issued
+
+cycle 19: beq $t1, $t2, 9
+$t6 = 20, Memory not modified
+
+cycle 19-20: $t6=20, Row buffer not updated, Accessed address 1000 from row buffer
+
+cycle 21: add $t7, $t6, $t6
+$t7 = 40, Memory not modified
+
+cycle 22: add $t8, $t6, $t6
+$t8 = 40, Memory not modified
+
+cycle 23: add $t9, $t6, $t6
+$t9 = 40, Memory not modified
+
+cycle 24-33: write back row buffer to DRAM
+
+Clock Cycles: 33
+
+1000-1003 = 20
+
+Total Buffer Updates: 2

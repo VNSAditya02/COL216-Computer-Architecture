@@ -1,0 +1,9 @@
+addi $t0, $zero, 1000
+addi $t1, $zero, 1024
+addi $t2, $zero, 10
+addi $t3, $zero, 20
+sw $t3, 0($t0)
+mul $t3, $t2, $t3
+lw $s0, 0($t0)
+bne $s0, $t0, 13
+mul $t9, $t3, $t2

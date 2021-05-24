@@ -1,0 +1,48 @@
+cycle 1: Memory address of the instruction: 4
+Executed Instruction: 	addi $s0, $zero, 1000
+$s0 = 1000, Memory not modified
+
+cycle 2: Memory address of the instruction: 8
+Executed Instruction: 	addi $s1, $zero, 2500
+$s1 = 2500, Memory not modified
+
+cycle 3: Memory address of the instruction: 12
+Executed Instruction: 	addi $t0, $zero, 1
+$t0 = 1, Memory not modified
+
+cycle 4: Memory address of the instruction: 16
+Executed Instruction: 	addi $t1, $zero, 2
+$t1 = 2, Memory not modified
+
+cycle 5: Memory address of the instruction: 24
+Executed Instruction: sw $t0, 0($s0)
+DRAM request issued
+
+cycle 6: Memory address of the instruction: 28
+Executed Instruction: sw $t1, 0($s1)
+DRAM request issued
+
+cycle 7: Memory address of the instruction: 32
+Executed Instruction: 	sub $s1, $s1, $s0
+$s1 = 1500, Memory not modified
+
+cycle 8: Memory address of the instruction: 36
+Executed Instruction: sw $t1, 0($s1)
+DRAM request issued
+
+cycle 6-17: No register modified, Updated memory address 1000-1003 = 1, Activated row 0 and accessed address 1000
+
+cycle 18-39: No register modified, Updated memory address 2500-2503 = 2, Copied a row and activated row 2 and accessed address 2500
+
+cycle 40-61: No register modified, Updated memory address 1500-1503 = 2, Copied a row and activated row 1 and accessed address 1500
+
+cycle 62-71: write back row buffer to DRAM
+
+Clock Cycles: 71
+
+1000-1003 = 1
+1500-1503 = 2
+2500-2503 = 2
+
+Total Buffer Updates: 6
+

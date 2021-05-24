@@ -1,0 +1,74 @@
+cycle 1: Memory address of the instruction: 8
+Executed Instruction: addi $s0, $zero, 1000
+$s0 = 1000, Memory not modified
+
+cycle 2: Memory address of the instruction: 12
+Executed Instruction: addi $s1, $zero, 2000
+$s1 = 2000, Memory not modified
+
+cycle 3: Memory address of the instruction: 16
+Executed Instruction: addi $s2, $zero, 1004
+$s2 = 1004, Memory not modified
+
+cycle 4: Memory address of the instruction: 20
+Executed Instruction: addi $t0, $zero, 1
+$t0 = 1, Memory not modified
+
+cycle 5: Memory address of the instruction: 24
+Executed Instruction: addi $t1, $zero, 2
+$t1 = 2, Memory not modified
+
+cycle 6: Memory address of the instruction: 28
+Executed Instruction: addi $t2, $zero, 3
+$t2 = 3, Memory not modified
+
+cycle 7: Memory address of the instruction: 32
+Executed Instruction: j abc
+No register modified, Memory not modified
+
+cycle 8: Memory address of the instruction: 84
+Executed Instruction: j dummy
+No register modified, Memory not modified
+
+cycle 9: Memory address of the instruction: 48
+Executed Instruction: sw $t0, 0($s0)
+DRAM request issued
+
+cycle 10: Memory address of the instruction: 52
+Executed Instruction: sw $t2, 4($s0)
+DRAM request issued
+
+cycle 11: Memory address of the instruction: 56
+Executed Instruction: lw $t3, 0($s0)
+DRAM request issued
+
+cycle 10-21: No register modified, Updated memory address 1000-1003 = 1, Activated row 0 and accessed address 1000
+
+cycle 22-23: No register modified, Updated memory address 1004-1007 = 3, Accessed address 1004 from the row buffer
+
+cycle 24-25: $t3=1, Row buffer not updated, Accessed address 1000 from row buffer
+
+cycle 26: Memory address of the instruction: 60
+Executed Instruction: sw $t3, 0($s1)
+DRAM request issued
+
+cycle 27: Memory address of the instruction: 64
+Executed Instruction: lw $t4, 4($s0)
+DRAM request issued
+
+cycle 28: Memory address of the instruction: 68
+Executed Instruction: j exit
+No register modified, Memory not modified
+
+cycle 27-48: No register modified, Updated memory address 2000-2003 = 1, Copied a row and activated row 1 and accessed address 2000
+
+cycle 49-70: $t4=3, Row buffer not updated, Copied a row and activated row 0 and accessed address 1004
+
+Clock Cycles: 70
+
+1000-1003 = 1
+1004-1007 = 3
+2000-2003 = 1
+
+Total Buffer Updates: 6
+

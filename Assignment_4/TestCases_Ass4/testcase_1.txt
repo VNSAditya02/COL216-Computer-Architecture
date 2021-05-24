@@ -1,0 +1,24 @@
+main:
+
+addi $s0, $zero, 1000
+addi $s1, $zero, 2000
+addi $s2, $zero, 1004
+addi $t0, $zero, 1
+addi $t1, $zero, 1
+addi $a0, $zero, 4
+	
+loop:
+
+sw $t0, 0($s0)
+sw $t1, 0($s1)
+lw $t9, 0($s1)
+lw $t8, 0($s0)
+add $t7, $t8, $t9
+add $t6, $t6, $t7
+sw $t6, 0($s2)
+addi $s2, $s2, 4
+bne $t6, $a0, loop
+
+exit:
+	
+	

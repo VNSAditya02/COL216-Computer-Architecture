@@ -1,0 +1,10 @@
+main:
+	addi $s0, $zero, 0
+	addi $s1, $zero, 4
+	lw $s1, 1000($s0)
+	
+	lw $t2, 1004($s0)
+
+	lw $t2, 1000($s0)
+	
+exit:
